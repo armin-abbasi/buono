@@ -25,7 +25,9 @@ class Orders implements Manageable
      */
     public function create(array $input)
     {
-        return Order::create($input);
+        $order = Order::create($input);
+
+        return $order->foods()->attach($input['foods']);
     }
 
     /**
@@ -43,7 +45,11 @@ class Orders implements Manageable
      */
     public function delete(int $id)
     {
-        return Order::destroy($id);
+        $order = Order::findOrFail($id);
+
+        $order->foods()->detach($order->foods()->get()->toArray());
+
+        return $order->delete();
     }
 
     /**
@@ -54,6 +60,11 @@ class Orders implements Manageable
     public function update(int $id, array $input)
     {
         $order = Order::findOrFail($id);
+
+        if (!empty($input['foods'])) {
+            $order->foods()->sync($input['foods']);
+        }
+
         return $order->update($input);
     }
 }

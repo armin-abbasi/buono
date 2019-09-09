@@ -85,7 +85,7 @@ class Handler extends ExceptionHandler
                 $status = 404;
                 $message = $exception->getMessage();
             } elseif ($exception instanceof ValidationException) {
-                $status = 420;
+                $status = 422;
                 $code = -2;
                 $data = $exception->errors();
                 $message = trans('messages.errors.invalid_input');
