@@ -16,7 +16,7 @@ class Orders implements Manageable
      */
     public function getAll()
     {
-        return Order::with(Food::class)->paginate(5);
+        return Order::with('foods')->paginate(5);
     }
 
     /**

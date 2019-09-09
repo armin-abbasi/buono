@@ -26,18 +26,18 @@ class OrderController extends Controller
     }
 
     /**
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $data = $this->service->getAll();
 
-        return (new Response(0, trans('messages.general.get'), $data, 200));
+        return (new Response(0, trans('messages.general.get'), $data, 200))->toJson();
     }
 
     /**
      * @param CreateOrderRequest $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create(CreateOrderRequest $request)
     {
@@ -45,52 +45,52 @@ class OrderController extends Controller
 
         $data = $this->service->create($input);
 
-        return (new Response(0, trans('messages.general.created'), $data, 201));
+        return (new Response(0, trans('messages.general.created'), $data, 201))->toJson();
     }
 
     /**
      * @param $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function get($id)
     {
         $data = $this->service->get($id);
 
-        return (new Response(0, trans('messages.general.get'), $data, 200));
+        return (new Response(0, trans('messages.general.get'), $data, 200))->toJson();
     }
 
     /**
      * @param $id
      * @param UpdateOrderRequest $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update($id, UpdateOrderRequest $request)
     {
         $data = $this->service->update($id, $request->all());
 
-        return (new Response(0, trans('messages.general.updated'), $data, 200));
+        return (new Response(0, trans('messages.general.updated'), $data, 200))->toJson();
     }
 
     /**
      * @param $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function delete($id)
     {
         $data = $this->service->delete($id);
 
-        return (new Response(0, trans('messages.general.deleted'), $data, 202));
+        return (new Response(0, trans('messages.general.deleted'), $data, 202))->toJson();
     }
 
     /**
      * @param $id
      * @param UpdateOrderRequest $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function updateState($id, UpdateOrderRequest $request)
     {
         $data = $this->service->update($id, $request->only('state'));
 
-        return (new Response(0, trans('messages.general.updated'), $data, 200));
+        return (new Response(0, trans('messages.general.updated'), $data, 200))->toJson();
     }
 }
