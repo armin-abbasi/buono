@@ -36,7 +36,7 @@ class Orders implements Manageable
      */
     public function get(int $id)
     {
-        return Order::find($id)->toArray();
+        return Order::findOrFail($id)->toArray();
     }
 
     /**

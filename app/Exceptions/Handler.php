@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Libraries\Api\Response;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -75,7 +76,8 @@ class Handler extends ExceptionHandler
             $code = null;
             $data = null;
 
-            if ($exception instanceof NotFoundHttpException) {
+            if ($exception instanceof NotFoundHttpException ||
+                $exception instanceof ModelNotFoundException) {
                 $status = 404;
                 $message = trans('messages.errors.not_found');
             } elseif ($exception->getCode() == 23000) {

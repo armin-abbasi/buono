@@ -25,7 +25,7 @@ class UpdateOrderRequest extends FormRequest
     {
         return [
             'title' => 'string',
-            'res_id' => 'number|exists:restaurants,id',
+            'res_id' => 'exists:restaurants,id',
             'state' => 'in:INIT,SUBMITTED,DELIVERED',
             'foods' => 'array|exists:foods,id',
         ];

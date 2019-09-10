@@ -25,7 +25,7 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'title' => 'string',
-            'res_id' => 'required|number|exists:restaurants,id',
+            'res_id' => 'required|exists:restaurants,id',
             'foods' => 'required|array|exists:foods,id',
         ];
     }
