@@ -6,31 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Libraries\Api\Response;
-use App\Library\Services\Orders;
-use Illuminate\Http\Request;
+use App\Library\Abstracts\OrdersService;
 
 class OrderController extends Controller
 {
-    /**
-     * @var Orders $service
-     */
-    private $service;
-
-    /**
-     * OrderController constructor.
-     * @param Orders $ordersService
-     */
-    public function __construct(Orders $ordersService)
-    {
-        $this->service = $ordersService;
-    }
 
     /**
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $data = $this->service->getAll();
+        $data = OrdersService::getAll();
 
         return (new Response(0, trans('messages.general.get'), $data, 200))->toJson();
     }
@@ -43,7 +29,7 @@ class OrderController extends Controller
     {
         $input = array_merge($request->all(), ['state' => 'INIT']);
 
-        $data = $this->service->create($input);
+        $data = OrdersService::create($input);
 
         return (new Response(0, trans('messages.general.created'), $data, 201))->toJson();
     }
@@ -54,7 +40,7 @@ class OrderController extends Controller
      */
     public function get($id)
     {
-        $data = $this->service->get($id);
+        $data = OrdersService::get($id);
 
         return (new Response(0, trans('messages.general.get'), $data, 200))->toJson();
     }
@@ -66,7 +52,7 @@ class OrderController extends Controller
      */
     public function update($id, UpdateOrderRequest $request)
     {
-        $data = $this->service->update($id, $request->all());
+        $data = OrdersService::update($id, $request->all());
 
         return (new Response(0, trans('messages.general.updated'), $data, 200))->toJson();
     }
@@ -77,7 +63,7 @@ class OrderController extends Controller
      */
     public function delete($id)
     {
-        $data = $this->service->delete($id);
+        $data = OrdersService::delete($id);
 
         return (new Response(0, trans('messages.general.deleted'), $data, 202))->toJson();
     }
@@ -89,7 +75,7 @@ class OrderController extends Controller
      */
     public function updateState($id, UpdateOrderRequest $request)
     {
-        $data = $this->service->update($id, $request->only('state'));
+        $data = OrdersService::update($id, $request->only('state'));
 
         return (new Response(0, trans('messages.general.updated'), $data, 200))->toJson();
     }
