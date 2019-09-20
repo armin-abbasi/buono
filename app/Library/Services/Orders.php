@@ -42,7 +42,7 @@ class Orders implements Manageable
      * @param int $id
      * @return mixed
      */
-    public function delete(int $id)
+    public function delete(int $id): bool
     {
         $order = Order::findOrFail($id);
 
@@ -56,7 +56,7 @@ class Orders implements Manageable
      * @param array $input
      * @return mixed
      */
-    public function update(int $id, array $input)
+    public function update(int $id, array $input): bool
     {
         $order = Order::findOrFail($id);
 
