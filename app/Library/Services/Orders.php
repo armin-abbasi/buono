@@ -26,7 +26,18 @@ class Orders implements Manageable
     {
         $order = Order::create($input);
 
-        return $order->foods()->attach($input['foods']);
+        $this->attach($order, $input['foods']);
+
+        return $order;
+    }
+
+    /**
+     * @param Order $order
+     * @param array $foods
+     */
+    public function attach(Order $order, array $foods)
+    {
+        $order->foods()->attach($foods);
     }
 
     /**

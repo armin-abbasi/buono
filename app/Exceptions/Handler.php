@@ -56,6 +56,10 @@ class Handler extends ExceptionHandler
 
             $errorInfo = $this->getInfo($exception);
 
+            if (empty($errorInfo)) {
+                return parent::render($request, $exception);
+            }
+
             // Return particular error code or -1 if not given.
             $code = $errorInfo['code'] ?: -1;
 
