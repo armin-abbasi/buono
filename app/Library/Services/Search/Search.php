@@ -67,7 +67,7 @@ class Search
      * @param array $items
      * @return mixed
      */
-    private function getCollection(array $items)
+    private function getCollection(array $items): Collection
     {
         $ids = Arr::pluck($items['hits']['hits'], '_id');
 
