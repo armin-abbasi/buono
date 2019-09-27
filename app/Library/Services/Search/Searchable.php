@@ -18,7 +18,7 @@ trait Searchable
      * Return index name.
      * @return mixed
      */
-    public  function getIndex()
+    public function getSearchIndex()
     {
         return $this->getTable();
     }
