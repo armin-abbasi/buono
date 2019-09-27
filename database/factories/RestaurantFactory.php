@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(Restaurant::class, function (Faker $faker) {
     $name = collect(['Viona', 'Barouj', 'Buono'])
         ->random(1)
-        ->values();
+        ->values()[0];
 
     return [
         'name' => $name,

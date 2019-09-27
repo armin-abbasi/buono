@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Library\Services;
+namespace App\Library\Services\Order;
 
 
 use App\Library\Abstracts\Manageable;

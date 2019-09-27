@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Library\Services\Orders;
+use App\Library\Services\Order\Orders;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

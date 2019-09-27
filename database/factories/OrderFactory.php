@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Order::class, function (Faker $faker) {
-    $state = collect(['INIT', 'SUBMITTED', 'DELIVERED'])->random(1)->values();
+    $state = collect(['INIT', 'SUBMITTED', 'DELIVERED'])->random(1)->values()[0];
     $resId = [1, 2, 3, 4, 5];
 
     return [

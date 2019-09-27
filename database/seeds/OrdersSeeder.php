@@ -11,8 +11,10 @@ class OrdersSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Order::class)->times(20)->create();
         factory(\App\Models\Food::class)->times(20)->create();
+        factory(\App\Models\Order::class)->times(20)->create()->each(function ($order) {
+            $order->foods()->attach(\App\Models\Food::all()->random(1));
+        });
         factory(\App\Models\Restaurant::class)->times(20)->create();
     }
 }
