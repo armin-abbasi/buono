@@ -44,4 +44,8 @@ return [
         ],
     ],
 
+    'search' => [
+        'hosts' => explode(',', env('ELASTICSEARCH_HOSTS')),
+    ],
+
 ];
