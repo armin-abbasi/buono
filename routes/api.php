@@ -14,6 +14,7 @@
 Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'orders', 'namespace' => 'Order'], function () {
         Route::get('/', 'OrderController@index');
+        Route::post('/search', 'OrderController@search');
         Route::post('/', 'OrderController@create');
         Route::get('/{order}', 'OrderController@get');
         Route::put('/{order}', 'OrderController@update');

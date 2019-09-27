@@ -7,6 +7,9 @@ use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Libraries\Api\Response;
 use App\Library\Abstracts\OrdersService;
+use App\Library\Services\Search\Search;
+use App\Models\Order;
+use Elasticsearch\Client;
 
 class OrderController extends Controller
 {
@@ -19,6 +22,24 @@ class OrderController extends Controller
         $data = OrdersService::getAll();
 
         return (new Response(0, trans('messages.general.get'), $data, 200))->toJson();
+    }
+
+    /**
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function search()
+    {
+        $query = request('query');
+
+        $searchService = new Search(
+            app()->make(Client::class),
+            app()->make(Order::class)
+        );
+
+        $data = $searchService->find($query);
+
+        return (new Response(0, trans('messages.general.get'), $data))->toJson();
     }
 
     /**
