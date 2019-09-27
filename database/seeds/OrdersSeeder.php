@@ -11,10 +11,8 @@ class OrdersSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 5) as $item) {
-            factory(\App\Models\Order::class)->create();
-            factory(\App\Models\Food::class)->create();
-            factory(\App\Models\Restaurant::class)->create();
-        }
+        factory(\App\Models\Order::class)->times(20)->create();
+        factory(\App\Models\Food::class)->times(20)->create();
+        factory(\App\Models\Restaurant::class)->times(20)->create();
     }
 }

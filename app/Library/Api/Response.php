@@ -31,7 +31,7 @@ class Response
      * @param mixed $data
      * @param int $statusCode
      */
-    public function __construct(int $code, string $message, array $data = [], int $statusCode = 200)
+    public function __construct(int $code, string $message, $data = [], int $statusCode = 200)
     {
         $this->code = $code;
         $this->message = $message;

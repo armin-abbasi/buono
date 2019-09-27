@@ -3,15 +3,14 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Food;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Food::class, function (Faker $faker) {
-    $foods = ['Pizza', 'Pasta', 'Kebab'];
-    $types = ['fast food', 'traditional', 'home made'];
+    $food = collect(['Pizza', 'Pasta', 'Kebab'])->random(1)->values();
+    $type = collect(['fast food', 'traditional', 'home made'])->random(1)->values();
 
     return [
-        'name' => $foods[array_rand($foods)],
-        'type' => $types[array_rand($types)],
+        'name' => $food,
+        'type' => $type,
     ];
 });

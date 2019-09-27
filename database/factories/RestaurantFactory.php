@@ -7,10 +7,12 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Restaurant::class, function (Faker $faker) {
-    $names = ['Viona', 'Barouj', 'Buono'];
+    $name = collect(['Viona', 'Barouj', 'Buono'])
+        ->random(1)
+        ->values();
 
     return [
-        'name' => $names[array_rand($names)],
+        'name' => $name,
         'description' => $faker->realText(50),
     ];
 });
