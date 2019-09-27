@@ -30,7 +30,7 @@ class OrderController extends Controller
      */
     public function search()
     {
-        $query = request('query') || "";
+        $query = request('query');
 
         $searchService = new Search(
             app()->make(Client::class),
